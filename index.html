@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<label>Monday</label><br>
+<label>Clock In </label><input type="time" id="mondayin">
+<label>Clock Out </label><input type="time" id="mondayout"> 
+<label>Lunch </label><input type="text" id="mondaylunch"> 
+<label>Daily Total:</label><input type="text" id="mondaydailytotal" readonly="readonly"><br/><br />
+
+<label>Tuesday</label><br>
+<label>Clock In </label><input type="time" id="tuesdayin">
+<label>Clock Out </label><input type="time" id="tuesdayout"> 
+<label>Lunch </label><input type="text" id="tuesdaylunch">
+<label>Daily Total:</label><input type="text" id="tuesdaydailytotal" readonly="readonly"><br/><br />
+
+
+<label>Wednesday</label><br>
+<label>Clock In </label><input type="time" id="wednesdayin">
+<label>Clock Out </label><input type="time" id="wednesdayout"> 
+<label>Lunch </label><input type="text" id="wednesdaylunch">
+<label>Daily Total:</label><input type="text" id="wednesdaydailytotal" readonly="readonly"><br/><br />
+
+
+<label>Thursday</label><br>
+<label>Clock In </label><input type="time" id="thursdayin">
+<label>Clock Out </label><input type="time" id="thursdayout"> 
+<label>Lunch </label><input type="text" id="thursdaylunch">
+<label>Daily Total:</label><input type="text" id="thursdaydailytotal" readonly="readonly"><br/><br />
+
+<label>Friday</label><br>
+<label>Clock In </label><input type="time" id="fridayin">
+<label>Clock Out </label><input type="time" id="fridayout"> 
+<label>Lunch </label><input type="text" id="fridaylunch">
+<label>Daily Total:</label><input type="text" id="fridaydailytotal" readonly="readonly"><br/><br />
+
+<label>Weekly Total:</label><input type="text" id="weeklytotal" readonly="readonly"><br/><br />
+
+<input type="button" value="Calculate" onclick="calcTotals()"><br/>
+
+
+<script>
+function calcTotals(){
+calcMonday();
+calcTuesday();
+calcWednesday();
+calcThursday();
+calcFriday();
+calcWeekly();
+}
+
+function calcMonday(){
+let clockin = document.getElementById("mondayin").value;
+let clockout = document.getElementById("mondayout").value;
+let lunch = document.getElementById("mondaylunch").value;
+
+var intime = clockin.split(/:/);
+var intotal = (intime[0] * 60) + (intime[1] * 1);
+
+var outtime = clockout.split(/:/);
+var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+
+var total = outtotal - intotal - lunch
+
+var displayhour = Math.floor(total/60);
+var displayminute = total % 60
+
+document.getElementById("mondaydailytotal").value = displayhour + ":" + displayminute;
+}
+
+
+function calcTuesday(){
+let clockin = document.getElementById("tuesdayin").value;
+let clockout = document.getElementById("tuesdayout").value;
+let lunch = document.getElementById("tuesdaylunch").value;
+
+var intime = clockin.split(/:/);
+var intotal = (intime[0] * 60) + (intime[1] * 1);
+
+var outtime = clockout.split(/:/);
+var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+
+var total = outtotal - intotal - lunch
+
+var displayhour = Math.floor(total/60);
+var displayminute = total % 60
+
+document.getElementById("tuesdaydailytotal").value = displayhour + ":" + displayminute;
+}
+
+
+function calcWednesday(){
+let clockin = document.getElementById("wednesdayin").value;
+let clockout = document.getElementById("wednesdayout").value;
+let lunch = document.getElementById("wednesdaylunch").value;
+
+var intime = clockin.split(/:/);
+var intotal = (intime[0] * 60) + (intime[1] * 1);
+
+var outtime = clockout.split(/:/);
+var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+
+var total = outtotal - intotal - lunch
+
+var displayhour = Math.floor(total/60);
+var displayminute = total % 60
+
+document.getElementById("wednesdaydailytotal").value = displayhour + ":" + displayminute;
+}
+
+function calcThursday(){
+let clockin = document.getElementById("thursdayin").value;
+let clockout = document.getElementById("thursdayout").value;
+let lunch = document.getElementById("thursdaylunch").value;
+
+var intime = clockin.split(/:/);
+var intotal = (intime[0] * 60) + (intime[1] * 1);
+
+var outtime = clockout.split(/:/);
+var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+
+var total = outtotal - intotal - lunch
+
+var displayhour = Math.floor(total/60);
+var displayminute = total % 60
+
+document.getElementById("thursdaydailytotal").value = displayhour + ":" + displayminute;
+}
+
+function calcFriday(){
+let clockin = document.getElementById("fridayin").value;
+let clockout = document.getElementById("fridayout").value;
+let lunch = document.getElementById("fridaylunch").value;
+
+var intime = clockin.split(/:/);
+var intotal = (intime[0] * 60) + (intime[1] * 1);
+
+var outtime = clockout.split(/:/);
+var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+
+var total = outtotal - intotal - lunch
+
+var displayhour = Math.floor(total/60);
+var displayminute = total % 60
+
+document.getElementById("fridaydailytotal").value = displayhour + ":" + displayminute;
+}
+
+function calcWeekly(){
+let monday = document.getElementById("mondaydailytotal").value;
+let tuesday = document.getElementById("tuesdaydailytotal").value;
+let wednesday = document.getElementById("wednesdaydailytotal").value;
+let thursday = document.getElementById("thursdaydailytotal").value;
+let friday = document.getElementById("fridaydailytotal").value;
+
+var mondaytime = monday.split(/:/);
+var mondaytotal = (mondaytime[0] * 60) + (mondaytime[1] * 1);
+
+var tuesdaytime = tuesday.split(/:/);
+var tuesdaytotal = (tuesdaytime[0] * 60) + (tuesdaytime[1] * 1);
+
+var wednesdaytime = wednesday.split(/:/);
+var wednesdaytotal = (wednesdaytime[0] * 60) + (wednesdaytime[1] * 1);
+
+var thursdaytime = thursday.split(/:/);
+var thursdaytotal = (thursdaytime[0] * 60) + (thursdaytime[1] * 1);
+
+var fridaytime = friday.split(/:/);
+var fridaytotal = (fridaytime[0] * 60) + (fridaytime[1] * 1);
+
+var weektotal = mondaytotal + tuesdaytotal + wednesdaytotal + thursdaytotal + fridaytotal;
+
+var displayweekhour = Math.floor(weektotal/60);
+var displayweekminute = weektotal % 60
+
+document.getElementById("weeklytotal").value = displayweekhour + ":" + displayweekminute;
+
+}
+</script>
+
+</body>
+</html>
