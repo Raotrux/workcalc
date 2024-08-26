@@ -1,46 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Work Calculator</title>
 </head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {
+  background-color: linen;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 799px) {
+    body {
+        background-color: linen;
+        max-width: 490px
+    }
+}
+
+</style>
 <body>
 
-<label>Monday</label><br>
+<div class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+
+<div class="w3-row w3-section w3-border w3-padding">
+<label class="w3-large">Monday</label><br>
 <label>Clock In </label><input type="time" id="mondayin">
 <label>Clock Out </label><input type="time" id="mondayout"> 
-<label>Lunch </label><input type="text" id="mondaylunch"> 
-<label>Daily Total:</label><input type="text" id="mondaydailytotal" readonly="readonly"><br/><br />
+<label>Lunch </label><input style="width:80px" type="text" id="mondaylunch"> 
+<label>Daily Total:</label><input style="width:80px" type="text" id="mondaydailytotal" readonly="readonly"><br/><br />
+</div>
 
-<label>Tuesday</label><br>
+<div class="w3-row w3-section w3-border w3-padding">
+<label class="w3-large">Tuesday</label><br>
 <label>Clock In </label><input type="time" id="tuesdayin">
 <label>Clock Out </label><input type="time" id="tuesdayout"> 
-<label>Lunch </label><input type="text" id="tuesdaylunch">
-<label>Daily Total:</label><input type="text" id="tuesdaydailytotal" readonly="readonly"><br/><br />
+<label>Lunch </label><input style="width:80px" type="text" id="tuesdaylunch">
+<label>Daily Total:</label><input style="width:80px" type="text" id="tuesdaydailytotal" readonly="readonly"><br/><br />
+</div>
 
-
-<label>Wednesday</label><br>
+<div class="w3-row w3-section w3-border w3-padding">
+<label class="w3-large">Wednesday</label><br>
 <label>Clock In </label><input type="time" id="wednesdayin">
 <label>Clock Out </label><input type="time" id="wednesdayout"> 
-<label>Lunch </label><input type="text" id="wednesdaylunch">
-<label>Daily Total:</label><input type="text" id="wednesdaydailytotal" readonly="readonly"><br/><br />
+<label>Lunch </label><input style="width:80px" type="text" id="wednesdaylunch">
+<label>Daily Total:</label><input style="width:80px" type="text" id="wednesdaydailytotal" readonly="readonly"><br/><br />
+</div>
 
-
-<label>Thursday</label><br>
+<div class="w3-row w3-section w3-border w3-padding">
+<label class="w3-large">Thursday</label><br>
 <label>Clock In </label><input type="time" id="thursdayin">
 <label>Clock Out </label><input type="time" id="thursdayout"> 
-<label>Lunch </label><input type="text" id="thursdaylunch">
-<label>Daily Total:</label><input type="text" id="thursdaydailytotal" readonly="readonly"><br/><br />
+<label>Lunch </label><input style="width:80px" type="text" id="thursdaylunch">
+<label>Daily Total:</label><input style="width:80px" type="text" id="thursdaydailytotal" readonly="readonly"><br/><br />
+</div>
 
-<label>Friday</label><br>
+<div class="w3-row w3-section w3-border w3-padding">
+<label class="w3-large">Friday</label><br>
 <label>Clock In </label><input type="time" id="fridayin">
 <label>Clock Out </label><input type="time" id="fridayout"> 
-<label>Lunch </label><input type="text" id="fridaylunch">
-<label>Daily Total:</label><input type="text" id="fridaydailytotal" readonly="readonly"><br/><br />
+<label>Lunch </label><input style="width:80px" type="text" id="fridaylunch">
+<label>Daily Total:</label><input style="width:80px" type="text" id="fridaydailytotal" readonly="readonly"><br/><br />
+</div>
 
-<label>Weekly Total:</label><input type="text" id="weeklytotal" readonly="readonly"><br/><br />
+<div class="w3-margin">
+<label class="w3-large">Weekly Total:</label><input style="width:80px" type="text" id="weeklytotal" readonly="readonly">
+<input type="button" class="w3-button w3-blue" value="Calculate" onclick="calcTotals()"><br/>
+</div>
 
-<input type="button" value="Calculate" onclick="calcTotals()"><br/>
-
+</div>
 
 <script>
 function calcTotals(){
