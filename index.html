@@ -1,210 +1,189 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Work Calculator</title>
 </head>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<style>
-body {
-  background-color: linen;
-  max-width: 800px;
-}
-
-@media screen and (max-width: 799px) {
-    body {
-        background-color: linen;
-        max-width: 490px
-    }
-}
-
-</style>
 <body>
 
 <div class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 
 <div class="w3-row w3-section w3-border w3-padding">
 <label class="w3-large">Monday</label><br>
-<label>Clock In </label><input type="time" id="mondayin">
-<label>Clock Out </label><input type="time" id="mondayout"> 
-<label>Lunch </label><input style="width:80px" type="text" id="mondaylunch"> 
+<label>Clock In </label><input style="width:100px" type="time" id="mondayin">
+<label>Clock Out </label><input style="width:100px" type="time" id="mondayout"> 
+<label>Lunch Duration </label><input style="width:50px" type="text" id="mondaylunch"> 
 <label>Daily Total:</label><input style="width:80px" type="text" id="mondaydailytotal" readonly="readonly"><br/><br />
 </div>
 
 <div class="w3-row w3-section w3-border w3-padding">
 <label class="w3-large">Tuesday</label><br>
-<label>Clock In </label><input type="time" id="tuesdayin">
-<label>Clock Out </label><input type="time" id="tuesdayout"> 
-<label>Lunch </label><input style="width:80px" type="text" id="tuesdaylunch">
+<label>Clock In </label><input style="width:100px" type="time" id="tuesdayin">
+<label>Clock Out </label><input style="width:100px" type="time" id="tuesdayout"> 
+<label>Lunch Duration </label><input style="width:50px" type="text" id="tuesdaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="tuesdaydailytotal" readonly="readonly"><br/><br />
 </div>
 
 <div class="w3-row w3-section w3-border w3-padding">
 <label class="w3-large">Wednesday</label><br>
-<label>Clock In </label><input type="time" id="wednesdayin">
-<label>Clock Out </label><input type="time" id="wednesdayout"> 
-<label>Lunch </label><input style="width:80px" type="text" id="wednesdaylunch">
+<label>Clock In </label><input style="width:100px" type="time" id="wednesdayin">
+<label>Clock Out </label><input style="width:100px" type="time" id="wednesdayout"> 
+<label>Lunch Duration </label><input style="width:50px" type="text" id="wednesdaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="wednesdaydailytotal" readonly="readonly"><br/><br />
 </div>
 
 <div class="w3-row w3-section w3-border w3-padding">
 <label class="w3-large">Thursday</label><br>
-<label>Clock In </label><input type="time" id="thursdayin">
-<label>Clock Out </label><input type="time" id="thursdayout"> 
-<label>Lunch </label><input style="width:80px" type="text" id="thursdaylunch">
+<label>Clock In </label><input style="width:100px" type="time" id="thursdayin">
+<label>Clock Out </label><input style="width:100px" type="time" id="thursdayout"> 
+<label>Lunch Duration </label><input style="width:50px" type="text" id="thursdaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="thursdaydailytotal" readonly="readonly"><br/><br />
 </div>
 
 <div class="w3-row w3-section w3-border w3-padding">
 <label class="w3-large">Friday</label><br>
-<label>Clock In </label><input type="time" id="fridayin">
-<label>Clock Out </label><input type="time" id="fridayout"> 
-<label>Lunch </label><input style="width:80px" type="text" id="fridaylunch">
+<label>Clock In </label><input style="width:100px" type="time" id="fridayin">
+<label>Clock Out </label><input style="width:100px" type="time" id="fridayout"> 
+<label>Lunch Duration </label><input style="width:50px" type="text" id="fridaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="fridaydailytotal" readonly="readonly"><br/><br />
 </div>
 
 <div class="w3-margin">
 <label class="w3-large">Weekly Total:</label><input style="width:80px" type="text" id="weeklytotal" readonly="readonly">
+<label class="w3-large">Time Left:</label><input style="width:80px" type="text" id="timeleft" readonly="readonly">
 <input type="button" class="w3-button w3-blue" value="Calculate" onclick="calcTotals()"><br/>
+</div>
+
+<div class="w3-margin">
+<br /><br /><br /><br /><br /><br />
+<label class="w3-large">Lunch Clock Out:</label><input style="width:80px" type="time" id="lunchout">
+<label class="w3-large">Lunch Clock In:</label><input style="width:80px" type="time" id="lunchin">
+<label class="w3-large">Lunch Duration:</label><input style="width:80px" type="time" id="lunchduration" readonly="readonly">
+<input type="button" class="w3-button w3-blue" value="Calculate" onclick="calcLunch()"><br/>
 </div>
 
 </div>
 
 <script>
+document.getElementById("mondayin").value = '06:30';
+document.getElementById("tuesdayin").value = '06:30';
+document.getElementById("wednesdayin").value = '06:30';
+document.getElementById("thursdayin").value = '06:30';
+document.getElementById("fridayin").value = '06:30';
+
+document.getElementById("mondayout").value = '15:00';
+document.getElementById("tuesdayout").value = '15:00';
+document.getElementById("wednesdayout").value = '15:00';
+document.getElementById("thursdayout").value = '15:00';
+document.getElementById("fridayout").value = '15:00';
+
+document.getElementById("mondaylunch").value = 30;
+document.getElementById("tuesdaylunch").value = 30;
+document.getElementById("wednesdaylunch").value = 30;
+document.getElementById("thursdaylunch").value = 30;
+document.getElementById("fridaylunch").value = 30;
+
 function calcTotals(){
-calcMonday();
-calcTuesday();
-calcWednesday();
-calcThursday();
-calcFriday();
-calcWeekly();
-}
 
-function calcMonday(){
-let clockin = document.getElementById("mondayin").value;
-let clockout = document.getElementById("mondayout").value;
-let lunch = document.getElementById("mondaylunch").value;
+console.log(document.getElementById("mondayin").value);
 
-var intime = clockin.split(/:/);
-var intotal = (intime[0] * 60) + (intime[1] * 1);
+calcTime(document.getElementById("mondayin").value, document.getElementById("mondayout").value, document.getElementById("mondaylunch").value,
+'monday');
 
-var outtime = clockout.split(/:/);
-var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+calcTime(document.getElementById("tuesdayin").value, document.getElementById("tuesdayout").value, document.getElementById("tuesdaylunch").value,
+'tuesday');
 
-var total = outtotal - intotal - lunch
+calcTime(document.getElementById("wednesdayin").value, document.getElementById("wednesdayout").value, document.getElementById("wednesdaylunch").value,
+'wednesday');
 
-var displayhour = Math.floor(total/60);
-var displayminute = total % 60
+calcTime(document.getElementById("thursdayin").value, document.getElementById("thursdayout").value, document.getElementById("thursdaylunch").value,
+'thursday');
 
-document.getElementById("mondaydailytotal").value = displayhour + ":" + displayminute;
+calcTime(document.getElementById("fridayin").value, document.getElementById("fridayout").value, document.getElementById("fridaylunch").value,
+'friday');
 }
 
 
-function calcTuesday(){
-let clockin = document.getElementById("tuesdayin").value;
-let clockout = document.getElementById("tuesdayout").value;
-let lunch = document.getElementById("tuesdaylunch").value;
+function calcTime(x, y, z, day){
+	let clockin = x;
+	let clockout = y;
+	let lunch = z;
 
-var intime = clockin.split(/:/);
-var intotal = (intime[0] * 60) + (intime[1] * 1);
+	var intime = clockin.split(/:/);
+	var intotal = (intime[0] * 60) + (intime[1] * 1);
 
-var outtime = clockout.split(/:/);
-var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+	var outtime = clockout.split(/:/);
+	var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
 
-var total = outtotal - intotal - lunch
-
-var displayhour = Math.floor(total/60);
-var displayminute = total % 60
-
-document.getElementById("tuesdaydailytotal").value = displayhour + ":" + displayminute;
+	var total = Number(outtotal - intotal - lunch);
+    
+    if (isNaN(total) === true){
+    	total = 0;
+    }
+    
+	displayTime(total, day);
+	calcWeekly();
 }
 
+function displayTime(total, day){
+	var displayhour = Math.floor(total/60);
+	var displayminute = Number(total % 60);
 
-function calcWednesday(){
-let clockin = document.getElementById("wednesdayin").value;
-let clockout = document.getElementById("wednesdayout").value;
-let lunch = document.getElementById("wednesdaylunch").value;
+    console.log(total);
 
-var intime = clockin.split(/:/);
-var intotal = (intime[0] * 60) + (intime[1] * 1);
-
-var outtime = clockout.split(/:/);
-var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
-
-var total = outtotal - intotal - lunch
-
-var displayhour = Math.floor(total/60);
-var displayminute = total % 60
-
-document.getElementById("wednesdaydailytotal").value = displayhour + ":" + displayminute;
+	document.getElementById(day + "dailytotal").value = pad(displayhour) + ":" + pad(displayminute);
 }
 
-function calcThursday(){
-let clockin = document.getElementById("thursdayin").value;
-let clockout = document.getElementById("thursdayout").value;
-let lunch = document.getElementById("thursdaylunch").value;
-
-var intime = clockin.split(/:/);
-var intotal = (intime[0] * 60) + (intime[1] * 1);
-
-var outtime = clockout.split(/:/);
-var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
-
-var total = outtotal - intotal - lunch
-
-var displayhour = Math.floor(total/60);
-var displayminute = total % 60
-
-document.getElementById("thursdaydailytotal").value = displayhour + ":" + displayminute;
-}
-
-function calcFriday(){
-let clockin = document.getElementById("fridayin").value;
-let clockout = document.getElementById("fridayout").value;
-let lunch = document.getElementById("fridaylunch").value;
-
-var intime = clockin.split(/:/);
-var intotal = (intime[0] * 60) + (intime[1] * 1);
-
-var outtime = clockout.split(/:/);
-var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
-
-var total = outtotal - intotal - lunch
-
-var displayhour = Math.floor(total/60);
-var displayminute = total % 60
-
-document.getElementById("fridaydailytotal").value = displayhour + ":" + displayminute;
+function pad(value){
+	if(value < 10) {
+    	return '0' + value;
+    } else {
+    	return value;
+    }
 }
 
 function calcWeekly(){
-let monday = document.getElementById("mondaydailytotal").value;
-let tuesday = document.getElementById("tuesdaydailytotal").value;
-let wednesday = document.getElementById("wednesdaydailytotal").value;
-let thursday = document.getElementById("thursdaydailytotal").value;
-let friday = document.getElementById("fridaydailytotal").value;
 
-var mondaytime = monday.split(/:/);
-var mondaytotal = (mondaytime[0] * 60) + (mondaytime[1] * 1);
+	let monday = document.getElementById("mondaydailytotal").value;
+	let tuesday = document.getElementById("tuesdaydailytotal").value;
+	let wednesday = document.getElementById("wednesdaydailytotal").value;
+	let thursday = document.getElementById("thursdaydailytotal").value;
+	let friday = document.getElementById("fridaydailytotal").value;
 
-var tuesdaytime = tuesday.split(/:/);
-var tuesdaytotal = (tuesdaytime[0] * 60) + (tuesdaytime[1] * 1);
+	var mondaytime = monday.split(/:/);
+	var mondaytotal = (mondaytime[0] * 60) + (mondaytime[1] * 1);
 
-var wednesdaytime = wednesday.split(/:/);
-var wednesdaytotal = (wednesdaytime[0] * 60) + (wednesdaytime[1] * 1);
+	var tuesdaytime = tuesday.split(/:/);
+	var tuesdaytotal = (tuesdaytime[0] * 60) + (tuesdaytime[1] * 1);
 
-var thursdaytime = thursday.split(/:/);
-var thursdaytotal = (thursdaytime[0] * 60) + (thursdaytime[1] * 1);
+	var wednesdaytime = wednesday.split(/:/);
+	var wednesdaytotal = (wednesdaytime[0] * 60) + (wednesdaytime[1] * 1);
 
-var fridaytime = friday.split(/:/);
-var fridaytotal = (fridaytime[0] * 60) + (fridaytime[1] * 1);
+	var thursdaytime = thursday.split(/:/);
+	var thursdaytotal = (thursdaytime[0] * 60) + (thursdaytime[1] * 1);
 
-var weektotal = mondaytotal + tuesdaytotal + wednesdaytotal + thursdaytotal + fridaytotal;
+	var fridaytime = friday.split(/:/);
+	var fridaytotal = (fridaytime[0] * 60) + (fridaytime[1] * 1);
 
-var displayweekhour = Math.floor(weektotal/60);
-var displayweekminute = weektotal % 60
+	var weektotal = mondaytotal + tuesdaytotal + wednesdaytotal + thursdaytotal + fridaytotal;
+    
+    // do time left calc before display
+    var workweek = 2400;
+    document.getElementById("timeleft").value = workweek - weektotal;
 
-document.getElementById("weeklytotal").value = displayweekhour + ":" + displayweekminute;
+	var displayweekhour = Math.floor(weektotal/60);
+	var displayweekminute = weektotal % 60;
 
+
+	document.getElementById("weeklytotal").value = pad(displayweekhour) + ":" + pad(displayweekminute);
+
+}
+
+// Allow to set default values
+// Ensure '0' is before single digit minutes
+
+function calcLunch(){
+	calcTime(document.getElementById("lunchout").value, document.getElementById("lunchin").value, 0, 'nothing');
 }
 </script>
 
