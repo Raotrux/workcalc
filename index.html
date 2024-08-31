@@ -15,6 +15,7 @@
 <br />
 <label>Week Length </label>
 <select name="weeklength" id="defaultweeklength">
+  <option>--</option>
   <option value="38">38</option>
   <option value="39">39</option>
   <option value="40">40</option>
@@ -89,33 +90,33 @@
 </div>
 
 <script>
-var defaultclockin = '06:30';
-var defaultclockout = '15:00';
-var defaultlunchduration = '30';
-//var defaultweeklength = '2400';
+var defaultclockin = '00:00';
+var defaultclockout = '23:59';
+var defaultlunchduration = '';
+var defaultweeklength = '';
 
-
-
-setDefaults()
+console.log(localStorage.getItem(defaultclockin));
 
 function setDefaults(){ 
-    document.getElementById("mondayin").value = defaultclockin;
-	document.getElementById("tuesdayin").value = defaultclockin;
-	document.getElementById("wednesdayin").value = defaultclockin;
-	document.getElementById("thursdayin").value = defaultclockin;
-	document.getElementById("fridayin").value = defaultclockin;
+    document.getElementById("mondayin").value = localStorage.getItem(defaultclockin);
+	document.getElementById("tuesdayin").value = localStorage.getItem(defaultclockin);
+	document.getElementById("wednesdayin").value = localStorage.getItem(defaultclockin);
+	document.getElementById("thursdayin").value = localStorage.getItem(defaultclockin);
+	document.getElementById("fridayin").value = localStorage.getItem(defaultclockin);
 
-	document.getElementById("mondayout").value = defaultclockout;
-	document.getElementById("tuesdayout").value = defaultclockout;
-	document.getElementById("wednesdayout").value = defaultclockout;
-	document.getElementById("thursdayout").value = defaultclockout;
-	document.getElementById("fridayout").value = defaultclockout;
+	document.getElementById("mondayout").value = localStorage.getItem(defaultclockout);
+	document.getElementById("tuesdayout").value = localStorage.getItem(defaultclockout);
+	document.getElementById("wednesdayout").value = localStorage.getItem(defaultclockout);
+	document.getElementById("thursdayout").value = localStorage.getItem(defaultclockout);
+	document.getElementById("fridayout").value = localStorage.getItem(defaultclockout);
 
-	document.getElementById("mondaylunch").value = defaultlunchduration;
-	document.getElementById("tuesdaylunch").value = defaultlunchduration;
-	document.getElementById("wednesdaylunch").value = defaultlunchduration;
-	document.getElementById("thursdaylunch").value = defaultlunchduration;
-	document.getElementById("fridaylunch").value = defaultlunchduration;
+	document.getElementById("mondaylunch").value = localStorage.getItem(defaultlunchduration);
+	document.getElementById("tuesdaylunch").value = localStorage.getItem(defaultlunchduration);
+	document.getElementById("wednesdaylunch").value = localStorage.getItem(defaultlunchduration);
+	document.getElementById("thursdaylunch").value = localStorage.getItem(defaultlunchduration);
+	document.getElementById("fridaylunch").value = localStorage.getItem(defaultlunchduration);
+    
+    console.log(localStorage.getItem(defaultclockin));
 }
 
 function newDefaults(){
@@ -125,15 +126,18 @@ function newDefaults(){
     var tempdefaultweeklength = document.getElementById("defaultweeklength").value;
     
     if (tempdefaultclockin){
-		defaultclockin = tempdefaultclockin;
+    	localStorage.setItem(defaultclockin, tempdefaultclockin);
+		//defaultclockin = tempdefaultclockin;
     }
     
     if (tempdefaultclockout){
-		defaultclockout = tempdefaultclockout;
+    	localStorage.setItem(defaultclockout, tempdefaultclockout);
+		//defaultclockout = tempdefaultclockout;
     }
     
     if (tempdefaultlunchduration){
-		defaultlunchduration = tempdefaultlunchduration;
+    	localStorage.setItem(defaultlunchduration, tempdefaultlunchduration);
+		//defaultlunchduration = tempdefaultlunchduration;
     }
     
     if (tempdefaultweeklength){
@@ -250,8 +254,7 @@ function calcWeekly(){
     
 
     var workweek = localStorage.getItem(defaultweeklength);
-   
-    
+  
     var timeleft = workweek - weektotal;
     var displaytimelefthour = Math.floor(timeleft/60);
 	var displaytimeleftminute = timeleft % 60;
