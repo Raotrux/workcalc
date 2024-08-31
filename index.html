@@ -92,7 +92,9 @@
 var defaultclockin = '06:30';
 var defaultclockout = '15:00';
 var defaultlunchduration = '30';
-var defaultweeklength = '2400';
+//var defaultweeklength = '2400';
+
+
 
 setDefaults()
 
@@ -135,7 +137,8 @@ function newDefaults(){
     }
     
     if (tempdefaultweeklength){
-		defaultweeklength = (tempdefaultweeklength * 60);
+    	localStorage.setItem(defaultweeklength, (tempdefaultweeklength * 60));
+		//defaultweeklength = (tempdefaultweeklength * 60);
     }
     
     setDefaults();
@@ -246,7 +249,9 @@ function calcWeekly(){
 	var weektotal = mondaytotal + tuesdaytotal + wednesdaytotal + thursdaytotal + fridaytotal;
     
 
-    var workweek = defaultweeklength;
+    var workweek = localStorage.getItem(defaultweeklength);
+   
+    
     var timeleft = workweek - weektotal;
     var displaytimelefthour = Math.floor(timeleft/60);
 	var displaytimeleftminute = timeleft % 60;
