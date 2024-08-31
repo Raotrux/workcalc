@@ -13,6 +13,17 @@
     <label>Lunch Duration 
 <label style="font-size: small;"><i>(in minutes) </i></label></label><input style="width:100px" type="text" id="defaultlunchduration">
 <br />
+<label>Week Length </label>
+<select name="weeklength" id="defaultweeklength">
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+</select>
+<br />
 <input type="button" class="w3-button w3-blue" value="Change Default Values" onclick="newDefaults()">
     <br /> <br /> <br /> <br /> <br /> <br />
 </div>
@@ -81,6 +92,7 @@
 var defaultclockin = '06:30';
 var defaultclockout = '15:00';
 var defaultlunchduration = '30';
+var defaultweeklength = '2400';
 
 setDefaults()
 
@@ -105,20 +117,25 @@ function setDefaults(){
 }
 
 function newDefaults(){
-	var tempdefaultclockin = document.getElementById("defaultclockin").value
-    var tempdefaultclockout = document.getElementById("defaultclockout").value
-    var tempdefaultlunchduration = document.getElementById("defaultlunchduration").value
+	var tempdefaultclockin = document.getElementById("defaultclockin").value;
+    var tempdefaultclockout = document.getElementById("defaultclockout").value;
+    var tempdefaultlunchduration = document.getElementById("defaultlunchduration").value;
+    var tempdefaultweeklength = document.getElementById("defaultweeklength").value;
     
-    if (isNaN(tempdefaultclockin) == true){
+    if (tempdefaultclockin){
 		defaultclockin = tempdefaultclockin;
     }
     
-    if (isNaN(tempdefaultclockout) == true){
+    if (tempdefaultclockout){
 		defaultclockout = tempdefaultclockout;
     }
     
-    if (isNaN(tempdefaultlunchduration) == true){
+    if (tempdefaultlunchduration){
 		defaultlunchduration = tempdefaultlunchduration;
+    }
+    
+    if (tempdefaultweeklength){
+		defaultweeklength = (tempdefaultweeklength * 60);
     }
     
     setDefaults();
@@ -229,7 +246,7 @@ function calcWeekly(){
 	var weektotal = mondaytotal + tuesdaytotal + wednesdaytotal + thursdaytotal + fridaytotal;
     
 
-    var workweek = 2400;
+    var workweek = defaultweeklength;
     var timeleft = workweek - weektotal;
     var displaytimelefthour = Math.floor(timeleft/60);
 	var displaytimeleftminute = timeleft % 60;
@@ -240,9 +257,6 @@ function calcWeekly(){
 	document.getElementById("weeklytotal").value = pad(displayweekhour) + ":" + pad(displayweekminute);
 
 }
-
-// Allow to set default values
-// Ensure '0' is before single digit minutes
 
 function calcLunch(){
 	calcLunchtime(document.getElementById("lunchout").value, document.getElementById("lunchin").value);
