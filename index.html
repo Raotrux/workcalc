@@ -6,13 +6,26 @@
 </head>
 <body>
 
+<div class="w3-container w3-card-4 w3-blue w3-text-white w3-margin">
+<label class="w3-large">Default Values</label><br>
+	<label>Clock In </label><input style="width:100px" type="time" id="defaultclockin"> <br />
+    <label>Clock Out </label><input style="width:100px" type="time" id="defaultclockout"> <br />
+    <label>Lunch Duration 
+<label style="font-size: small;"><i>(in minutes) </i></label></label><input style="width:100px" type="text" id="defaultlunchduration">
+<br />
+<input type="button" class="w3-button w3-blue" value="Change Default Values" onclick="newDefaults()">
+    <br /> <br /> <br /> <br /> <br /> <br />
+</div>
+
 <div class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 
 <div class="w3-row w3-section w3-border w3-padding">
 <label class="w3-large">Monday</label><br>
 <label>Clock In </label><input style="width:100px" type="time" id="mondayin">
 <label>Clock Out </label><input style="width:100px" type="time" id="mondayout"> 
-<label>Lunch Duration </label><input style="width:50px" type="text" id="mondaylunch"> 
+<label>Lunch Duration 
+<label style="font-size: small;"><i>(in minutes)</i></label></label>
+<input style="width:50px" type="text" id="mondaylunch"> 
 <label>Daily Total:</label><input style="width:80px" type="text" id="mondaydailytotal" readonly="readonly"><br/><br />
 </div>
 
@@ -20,7 +33,7 @@
 <label class="w3-large">Tuesday</label><br>
 <label>Clock In </label><input style="width:100px" type="time" id="tuesdayin">
 <label>Clock Out </label><input style="width:100px" type="time" id="tuesdayout"> 
-<label>Lunch Duration </label><input style="width:50px" type="text" id="tuesdaylunch">
+<label>Lunch Duration <label style="font-size: small;"><i>(in minutes)</i></label> </label><input style="width:50px" type="text" id="tuesdaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="tuesdaydailytotal" readonly="readonly"><br/><br />
 </div>
 
@@ -28,7 +41,7 @@
 <label class="w3-large">Wednesday</label><br>
 <label>Clock In </label><input style="width:100px" type="time" id="wednesdayin">
 <label>Clock Out </label><input style="width:100px" type="time" id="wednesdayout"> 
-<label>Lunch Duration </label><input style="width:50px" type="text" id="wednesdaylunch">
+<label>Lunch Duration <label style="font-size: small;"><i>(in minutes)</i></label> </label><input style="width:50px" type="text" id="wednesdaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="wednesdaydailytotal" readonly="readonly"><br/><br />
 </div>
 
@@ -36,7 +49,7 @@
 <label class="w3-large">Thursday</label><br>
 <label>Clock In </label><input style="width:100px" type="time" id="thursdayin">
 <label>Clock Out </label><input style="width:100px" type="time" id="thursdayout"> 
-<label>Lunch Duration </label><input style="width:50px" type="text" id="thursdaylunch">
+<label>Lunch Duration <label style="font-size: small;"><i>(in minutes)</i></label> </label><input style="width:50px" type="text" id="thursdaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="thursdaydailytotal" readonly="readonly"><br/><br />
 </div>
 
@@ -44,7 +57,7 @@
 <label class="w3-large">Friday</label><br>
 <label>Clock In </label><input style="width:100px" type="time" id="fridayin">
 <label>Clock Out </label><input style="width:100px" type="time" id="fridayout"> 
-<label>Lunch Duration </label><input style="width:50px" type="text" id="fridaylunch">
+<label>Lunch Duration <label style="font-size: small;"><i>(in minutes)</i></label> </label><input style="width:50px" type="text" id="fridaylunch">
 <label>Daily Total:</label><input style="width:80px" type="text" id="fridaydailytotal" readonly="readonly"><br/><br />
 </div>
 
@@ -56,32 +69,61 @@
 
 <div class="w3-margin">
 <br /><br /><br /><br /><br /><br />
-<label class="w3-large">Lunch Clock Out:</label><input style="width:80px" type="time" id="lunchout">
-<label class="w3-large">Lunch Clock In:</label><input style="width:80px" type="time" id="lunchin">
-<label class="w3-large">Lunch Duration:</label><input style="width:80px" type="time" id="lunchduration" readonly="readonly">
+<label class="w3-large">Lunch Clock Out: </label><input style="width:100px" type="time" id="lunchout">
+<label class="w3-large">Lunch Clock In: </label><input style="width:100px" type="time" id="lunchin">
+<label class="w3-large">Lunch Duration: </label><input style="width:80px" type="text" id="lunchduration" readonly="readonly">
 <input type="button" class="w3-button w3-blue" value="Calculate" onclick="calcLunch()"><br/>
 </div>
 
 </div>
 
 <script>
-document.getElementById("mondayin").value = '06:30';
-document.getElementById("tuesdayin").value = '06:30';
-document.getElementById("wednesdayin").value = '06:30';
-document.getElementById("thursdayin").value = '06:30';
-document.getElementById("fridayin").value = '06:30';
+var defaultclockin = '06:30';
+var defaultclockout = '15:00';
+var defaultlunchduration = '30';
 
-document.getElementById("mondayout").value = '15:00';
-document.getElementById("tuesdayout").value = '15:00';
-document.getElementById("wednesdayout").value = '15:00';
-document.getElementById("thursdayout").value = '15:00';
-document.getElementById("fridayout").value = '15:00';
+setDefaults()
 
-document.getElementById("mondaylunch").value = 30;
-document.getElementById("tuesdaylunch").value = 30;
-document.getElementById("wednesdaylunch").value = 30;
-document.getElementById("thursdaylunch").value = 30;
-document.getElementById("fridaylunch").value = 30;
+function setDefaults(){ 
+    document.getElementById("mondayin").value = defaultclockin;
+	document.getElementById("tuesdayin").value = defaultclockin;
+	document.getElementById("wednesdayin").value = defaultclockin;
+	document.getElementById("thursdayin").value = defaultclockin;
+	document.getElementById("fridayin").value = defaultclockin;
+
+	document.getElementById("mondayout").value = defaultclockout;
+	document.getElementById("tuesdayout").value = defaultclockout;
+	document.getElementById("wednesdayout").value = defaultclockout;
+	document.getElementById("thursdayout").value = defaultclockout;
+	document.getElementById("fridayout").value = defaultclockout;
+
+	document.getElementById("mondaylunch").value = defaultlunchduration;
+	document.getElementById("tuesdaylunch").value = defaultlunchduration;
+	document.getElementById("wednesdaylunch").value = defaultlunchduration;
+	document.getElementById("thursdaylunch").value = defaultlunchduration;
+	document.getElementById("fridaylunch").value = defaultlunchduration;
+}
+
+function newDefaults(){
+	var tempdefaultclockin = document.getElementById("defaultclockin").value
+    var tempdefaultclockout = document.getElementById("defaultclockout").value
+    var tempdefaultlunchduration = document.getElementById("defaultlunchduration").value
+    
+    if (isNaN(tempdefaultclockin) == true){
+		defaultclockin = tempdefaultclockin;
+    }
+    
+    if (isNaN(tempdefaultclockout) == true){
+		defaultclockout = tempdefaultclockout;
+    }
+    
+    if (isNaN(tempdefaultlunchduration) == true){
+		defaultlunchduration = tempdefaultlunchduration;
+    }
+    
+    setDefaults();
+}
+
 
 function calcTotals(){
 
@@ -125,6 +167,25 @@ function calcTime(x, y, z, day){
 	calcWeekly();
 }
 
+function calcLunchtime(x, y){
+	let clockin = x;
+	let clockout = y;
+
+	var intime = clockin.split(/:/);
+	var intotal = (intime[0] * 60) + (intime[1] * 1);
+
+	var outtime = clockout.split(/:/);
+	var outtotal = (outtime[0] * 60) + (outtime[1] * 1);
+
+	var total = Number(outtotal - intotal);
+    
+    if (isNaN(total) === true){
+    	total = 0;
+    }
+
+    document.getElementById("lunchduration").value = pad(total) + " minutes";
+}
+
 function displayTime(total, day){
 	var displayhour = Math.floor(total/60);
 	var displayminute = Number(total % 60);
@@ -135,7 +196,7 @@ function displayTime(total, day){
 }
 
 function pad(value){
-	if(value < 10) {
+	if(value < 10 && value >= 0) {
     	return '0' + value;
     } else {
     	return value;
@@ -167,14 +228,15 @@ function calcWeekly(){
 
 	var weektotal = mondaytotal + tuesdaytotal + wednesdaytotal + thursdaytotal + fridaytotal;
     
-    // do time left calc before display
+
     var workweek = 2400;
-    document.getElementById("timeleft").value = workweek - weektotal;
+    var timeleft = workweek - weektotal;
+    var displaytimelefthour = Math.floor(timeleft/60);
+	var displaytimeleftminute = timeleft % 60;
+    document.getElementById("timeleft").value = pad(displaytimelefthour) + ":" + pad(displaytimeleftminute);
 
 	var displayweekhour = Math.floor(weektotal/60);
 	var displayweekminute = weektotal % 60;
-
-
 	document.getElementById("weeklytotal").value = pad(displayweekhour) + ":" + pad(displayweekminute);
 
 }
@@ -183,7 +245,7 @@ function calcWeekly(){
 // Ensure '0' is before single digit minutes
 
 function calcLunch(){
-	calcTime(document.getElementById("lunchout").value, document.getElementById("lunchin").value, 0, 'nothing');
+	calcLunchtime(document.getElementById("lunchout").value, document.getElementById("lunchin").value);
 }
 </script>
 
